@@ -15,7 +15,7 @@ function getMenuHtml(menuArr) {
                 <div id="${id}">
                     <h2>${name}</h2>
                     <p>${ingredients}</p>
-                    <h3>${price}</h3>
+                    <h3>${'$' + price}</h3>
                 </div>
                 <button id="add-to-cart">+</button>
             </section>`
