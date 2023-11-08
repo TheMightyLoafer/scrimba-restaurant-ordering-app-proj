@@ -16,32 +16,35 @@ function getMenuHtml(menuArr) {
                     <h2>${name}</h2>
                     <p>${ingredients}</p>
                     <h3>${'$' + price}</h3>
+                    <button id="add-to-cart">+</button>
                 </div>
-                <button id="add-to-cart">+</button>
             </section>`
     }).join('')
 }
 
-function checkoutButton(display) {
-    if(display) {
-        return`
-            <section class="button">
-                <button type="button" id="checkout">Checkout</button>
-            
-            </section>`
-    }
-}
-
-function cart(item) {
-    
-}
-
 document.getElementById('container').innerHTML = getMenuHtml(menuArray)
-const addToCartEvent = document.getElementById('add-to-cart')
-const checkoutEvent = document.getElementById('checkout')
+
+const addToCartButtons = document.querySelectorAll('#add-to-cart')
+const checkoutContainer = document.getElementById('checkout-container')
+
 let buttonDisplay = false
 
-addToCartEvent.addEventListener('click', () => {
-    buttonDisplay = true
-    checkoutButton(buttonDisplay)
-})
+addToCartButtons.forEach(button => {
+  button.addEventListener('click', (e) => {
+    buttonDisplay = true;
+    if (buttonDisplay) {
+        const checkoutButtonExists = checkoutContainer.querySelector('#checkout')
+
+        if (!checkoutButtonExists) {
+            const checkoutButtonHTML = `
+        <section class="button">
+            <button type="button" id="checkout">Checkout</button>
+        </section>`
+        const checkoutButtonElement = document.createElement('div')
+        checkoutButtonElement.innerHTML = checkoutButtonHTML
+        checkoutContainer.appendChild(checkoutButtonElement)
+        }
+    }
+    console.log('clicked:', e.target.parentElement.id);
+  });
+});

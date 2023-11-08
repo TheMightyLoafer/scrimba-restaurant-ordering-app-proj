@@ -11,6 +11,7 @@ body {
 
 .card {
     display: flex;
+    flex-direction: column;
     min-width: 400px;
     max-width: 450px;
     margin: 0 20px 15px 20px;
@@ -18,3 +19,8 @@ body {
     max-height: 120px;
 }
 
+#add-to-cart {
+    border-radius: 100%;
+    width: fit-content;
+    flex-direction: row;
+}
