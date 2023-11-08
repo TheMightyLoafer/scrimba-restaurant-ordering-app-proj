@@ -35,6 +35,7 @@ let checkoutButtonCreated = false //Varible to check if the button exists
 
 addToCartButtons.forEach(button => {
     button.addEventListener('click', (e) => {
+
         checkoutButtonDisplay = true
         if (checkoutButtonDisplay) {
             if (!checkoutButtonCreated) {
@@ -55,9 +56,17 @@ addToCartButtons.forEach(button => {
                 displayCheckout(true)
             })
         }
-        console.log('clicked:', e.target.parentElement.id);
+        console.log(e.target.dataset.name)
+        addToCart(e.target.dateaset.nam)
     });
 });
+
+const cartItems = []
+function addToCart(item) {
+    cartItems.push(item)
+    console.log(`Item ${item} added to cart.`)
+    console.log(cartItems)
+}
 
 //Submit Order Modal Box
 const submitModal = document.getElementById('order-submit-modal')
@@ -65,8 +74,30 @@ const modalCloseBtn = document.getElementById('modal-close-btn')
 const orderForm = document.getElementById('order-form')
 const submitOrder = document.getElementById('modal-submit-btn')
 
+let customerOrderDetails = {}
+
 function displayCheckout(checkoutClick = false) {
     console.log('Its time to checkout!')
     submitModal.style.display = 'block'
+    console.log(cartItems)
 }
 
+modalCloseBtn.addEventListener('click', (e) => {
+    submitModal.style.display = 'none'
+})
+
+orderForm.addEventListener('submit', (e) => {
+    e.preventDefault()
+
+    const orderFormData = new FormData(orderForm)
+
+    customerOrderDetails = {
+        customer: orderFormData.get('name'),
+        email: orderFormData.get('email')
+    }
+
+    const confirmOrderTxt = document.getElementById('modal-inner')
+    confirmOrderTxt.innerHTML = `<p>
+    Thank you for your order! ${customerOrderDetails.customer}
+    </p>`
+})
