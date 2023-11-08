@@ -1,5 +1,7 @@
+// Import Data
 import menuArray from "./data.js";
 
+//Display menu cards
 function getMenuHtml(menuArr) {
     return menuArr.map(item => {
         const {
@@ -24,6 +26,7 @@ function getMenuHtml(menuArr) {
 
 document.getElementById('container').innerHTML = getMenuHtml(menuArray)
 
+//Buttons and Button functionality
 const addToCartButtons = document.querySelectorAll('#add-to-cart')
 const checkoutContainer = document.getElementById('checkout-container')
 
@@ -48,3 +51,9 @@ addToCartButtons.forEach(button => {
     console.log('clicked:', e.target.parentElement.id);
   });
 });
+
+//Submit Order Modal Box
+const submitModal = document.getElementById('order-submit-modal')
+const modalCloseBtn = document.getElementById('modal-close-btn')
+const orderForm = document.getElementById('order-form')
+const submitOrder = document.getElementById('modal-submit-btn')
