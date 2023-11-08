@@ -26,10 +26,22 @@ function checkoutButton(display) {
     if(display) {
         return`
             <section class="button">
-                <button type="button">Checkout</button>
+                <button type="button" id="checkout">Checkout</button>
             
             </section>`
     }
 }
 
+function cart(item) {
+    
+}
+
 document.getElementById('container').innerHTML = getMenuHtml(menuArray)
+const addToCartEvent = document.getElementById('add-to-cart')
+const checkoutEvent = document.getElementById('checkout')
+let buttonDisplay = false
+
+addToCartEvent.addEventListener('click', () => {
+    buttonDisplay = true
+    checkoutButton(buttonDisplay)
+})
