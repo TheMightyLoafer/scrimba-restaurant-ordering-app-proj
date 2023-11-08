@@ -18,16 +18,24 @@ function getMenuHtml(menuArr) {
                     <h2>${name}</h2>
                     <p>${ingredients}</p>
                     <h3>${'$' + price}</h3>
-                    <button id="add-to-cart">+</button>
+                    <button id="add-to-cart" data-item=${JSON.stringify(item)}>+</button>
                 </div>
             </section>`
     }).join('')
 }
 
-document.getElementById('container').innerHTML = getMenuHtml(menuArray)
+const menuContainer = document.getElementById('container')
+menuContainer.innerHTML = getMenuHtml(menuArray)
+
+menuContainer.addEventListener('click', (e) => {
+    const button = e.target.closest('button[data-item]')
+    if (button) {
+        const menuItem = JSON.parse(button.dataset.item)
+        addToCart(menuItem)
+    }
+})
 
 //Buttons and Button functionality
-const addToCartButtons = document.querySelectorAll('#add-to-cart')
 const checkoutContainer = document.getElementById('checkout-container')
 
 let checkoutButtonDisplay = false //Varible to initialize checkout buttons visibility
@@ -56,8 +64,6 @@ addToCartButtons.forEach(button => {
                 displayCheckout(true)
             })
         }
-        console.log(e.target.dataset.name)
-        addToCart(e.target.dateaset.nam)
     });
 });
 
