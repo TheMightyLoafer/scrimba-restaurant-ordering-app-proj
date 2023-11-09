@@ -27,45 +27,38 @@ function getMenuHtml(menuArr) {
 const menuContainer = document.getElementById('container')
 menuContainer.innerHTML = getMenuHtml(menuArray)
 
-menuContainer.addEventListener('click', (e) => {
-    const button = e.target.closest('button[data-item]')
-    if (button) {
-        const menuItem = JSON.parse(button.dataset.item)
-        addToCart(menuItem)
-    }
-})
-
-//Buttons and Button functionality
-const checkoutContainer = document.getElementById('checkout-container')
-
 let checkoutButtonDisplay = false //Varible to initialize checkout buttons visibility
 let checkoutButtonCreated = false //Varible to check if the button exists
 
-addToCartButtons.forEach(button => {
-    button.addEventListener('click', (e) => {
+const checkoutContainer = document.getElementById('checkout-container')
 
+menuContainer.addEventListener('click', (e) => {
+    const button = e.target.closest('button[data-item]')
+    if (button) {
+        const menuItem = JSON.parse(button.dataset.item.replace(/\\"/g, '"'))
+        addToCart(menuItem)
         checkoutButtonDisplay = true
-        if (checkoutButtonDisplay) {
-            if (!checkoutButtonCreated) {
-                const checkoutButtonHTML = `
-        <section class="button">
-            <button type="button" id="checkout">Checkout</button>
-        </section>`
-                const checkoutButtonElement = document.createElement('div')
-                checkoutButtonElement.innerHTML = checkoutButtonHTML
-                checkoutContainer.appendChild(checkoutButtonElement)
-                checkoutButtonCreated = true
-            }
-            // Now that the checkout button exists, it can be used
-
-            const checkoutButton = document.getElementById('checkout')
-            checkoutButton.addEventListener('click', () => {
-                console.log('clicked')
-                displayCheckout(true)
-            })
+    }
+    if (checkoutButtonDisplay) {
+        if (!checkoutButtonCreated) {
+            const checkoutButtonHTML = `
+            <section class="button">
+                <button type="button" id="checkout">Checkout</button>
+            </section>`
+            const checkoutButtonElement = document.createElement('div')
+            checkoutButtonElement.innerHTML = checkoutButtonHTML
+            checkoutContainer.appendChild(checkoutButtonElement)
+            checkoutButtonCreated = true
         }
-    });
-});
+        // Now that the checkout button exists, it can be used
+
+        const checkoutButton = document.getElementById('checkout')
+        checkoutButton.addEventListener('click', () => {
+            console.log('clicked')
+            displayCheckout(true)
+        })
+    }
+})
 
 const cartItems = []
 function addToCart(item) {
@@ -86,11 +79,23 @@ function displayCheckout(checkoutClick = false) {
     console.log('Its time to checkout!')
     submitModal.style.display = 'block'
     console.log(cartItems)
+    renderCart(cartItems)
 }
 
 modalCloseBtn.addEventListener('click', (e) => {
     submitModal.style.display = 'none'
 })
+
+function renderCart(cart) {
+    const cartDisplayElement = document.getElementById('cart-display')
+    const cartDisplayList = cart.map((element) => {
+        return `<li>${element.name}</li>`
+    })
+
+    cartDisplayElement.innerHTML = `
+    <ul>
+        ${cartDisplayList.join('')}`
+}
 
 orderForm.addEventListener('submit', (e) => {
     e.preventDefault()
