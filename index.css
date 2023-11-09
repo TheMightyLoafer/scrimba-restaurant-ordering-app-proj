@@ -8,28 +8,35 @@ header {
     margin-bottom: 25px;
 }
 
-.container {
-    margin: 0 25em;
-    text-align: center;
-    width: 100%;
+.card-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
 }
 
 .card {
-    display: flex;
-    justify-content: space-between;
-    min-width: 400px;
-    max-width: 450px;
-    box-shadow: 0px 0px 10px 1px #999;
-    margin: 0 20px 15px 20px;
-    border-radius: 5px;
-    max-height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.card p {
-    flex-direction: column;
+.card-inner-container {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  gap: 1.25rem;
+  width: 100%;
 }
 
-.order-sumbmit-modal {
+.add-to-cart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.order-submit-modal {
     display: none;
     position: fixed;
     right: 0;
