@@ -12,15 +12,13 @@ function getMenuHtml(menuArr) {
             emoji
         } = item
         return `
-            <section class="card">
-                <h1 class"emoji">${emoji}</h1>
-                <div id="${id}">
+            <div class="card" id="${id}">
+                    <h1 class"emoji">${emoji}</h1>
                     <h2>${name}</h2>
                     <p>${ingredients}</p>
                     <h3>${'$' + price}</h3>
-                    <button id="add-to-cart" data-item=${JSON.stringify(item)}>+</button>
-                </div>
-            </section>`
+                    <button class="add-to-cart" id="add-to-cart" data-item=${JSON.stringify(item)}>+</button>
+            </div>`
     }).join('')
 }
 
@@ -94,7 +92,8 @@ function renderCart(cart) {
 
     cartDisplayElement.innerHTML = `
     <ul>
-        ${cartDisplayList.join('')}`
+        ${cartDisplayList.join('')}
+    </ul>`
 }
 
 orderForm.addEventListener('submit', (e) => {
