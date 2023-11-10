@@ -13,7 +13,7 @@ function getMenuHtml(menuArr) {
         } = item
         return `
             <div class="card" id="${id}">
-                    <h1 class"emoji">${emoji}</h1>
+                    <h1 class="emoji">${emoji}</h1>
                     <h2>${name}</h2>
                     <p>${ingredients}</p>
                     <h3>${'$' + price}</h3>
@@ -39,12 +39,9 @@ menuContainer.addEventListener('click', (e) => {
     }
     if (checkoutButtonDisplay) {
         if (!checkoutButtonCreated) {
-            const checkoutButtonHTML = `
-            <section class="button">
-                <button type="button" id="checkout">Checkout</button>
-            </section>`
             const checkoutButtonElement = document.createElement('div')
-            checkoutButtonElement.innerHTML = checkoutButtonHTML
+            checkoutButtonElement.classList.add('checkout-btn')
+            checkoutButtonElement.innerHTML = `<button type="button" id="checkout">Checkout</button>`
             checkoutContainer.appendChild(checkoutButtonElement)
             checkoutButtonCreated = true
         }
