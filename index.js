@@ -49,7 +49,8 @@ menuContainer.addEventListener('click', (e) => {
         if (!checkoutButtonCreated) {
             const checkoutButtonHTML = `
             <section class="checkout-button-container">
-                <button type="button" id="checkout">Checkout</button>
+                <button type="button" class="checkout-btn"
+                 id="checkout">Checkout</button>
             </section>`
             const checkoutButtonElement = document.createElement('div')
             checkoutButtonElement.innerHTML = checkoutButtonHTML

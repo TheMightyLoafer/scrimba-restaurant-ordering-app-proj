@@ -27,6 +27,19 @@ header {
   flex-direction: row;
   gap: 1.25rem;
   width: 100%;
+  justify-content: center;
+}
+
+.card-content {
+  flex-wrap: wrap;
+  flex: 0 0 500px;
+  border-bottom: #212529 solid 1px;
+}
+
+.emoji {
+  flex-direction: row;
+  display: flex;
+
 }
 
 .add-to-cart-container {
@@ -34,6 +47,17 @@ header {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+}
+
+.checkout-button {
+  border-radius: 10%;
+}
+
+.checkout-button-container {
+  display: flex;
+  flex-basis: 400px;
+  justify-content: center;
+  margin: 50px 0 50px;
 }
 
 .order-submit-modal {
